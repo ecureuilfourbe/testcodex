@@ -38,10 +38,46 @@
     restartButton.blur();
   });
 
+  const gameplayKeyCodes = [
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
+    "Space",
+    "KeyA",
+    "KeyD",
+    "KeyQ",
+    "KeyW",
+    "KeyZ",
+  ];
+
+  function isMenuControl(target) {
+    if (!target || target === canvas || target === document.body || target === document.documentElement) {
+      return false;
+    }
+
+    if (target instanceof Element) {
+      if (target instanceof HTMLElement && target.isContentEditable) {
+        return true;
+      }
+
+      const interactive = target.closest(
+        "button, [role='button'], [role='menuitem'], a[href], input, select, textarea, summary, [tabindex]:not([tabindex='-1'])"
+      );
+
+      if (interactive && interactive !== canvas) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   window.addEventListener("keydown", (event) => {
     const code = event.code;
-    if (["ArrowLeft", "ArrowRight", "ArrowUp", "Space", "KeyA", "KeyD", "KeyQ", "KeyW", "KeyZ"].includes(code)) {
-      event.preventDefault();
+    if (gameplayKeyCodes.includes(code)) {
+      if (!isMenuControl(event.target) && !isMenuControl(document.activeElement)) {
+        event.preventDefault();
+      }
     }
 
     switch (code) {

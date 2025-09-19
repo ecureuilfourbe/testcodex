@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Le Carnaval du Chien Voltigeur</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Le Carnaval du Chien Voltigeur</h1>
+      <p class="tagline">
+        Aide Samba, le chien acrobate, à collecter les tickets du carnaval pour
+        lancer le feu d'artifice final !
+      </p>
+      <div class="hud" role="status" aria-live="polite">
+        <p class="hud__score">
+          <span aria-hidden="true">🎟️</span>
+          Tickets :
+          <span id="ticket-count">0</span>
+          /
+          <span id="ticket-total">0</span>
+        </p>
+        <p id="status">Collecte tous les tickets pour déclencher la fête.</p>
+      </div>
+      <div class="game-area">
+        <canvas
+          id="game"
+          width="960"
+          height="540"
+          role="img"
+          aria-label="Un jeu de plateforme dans un carnaval avec un chien acrobate."
+        ></canvas>
+        <button id="restart-button" type="button">Recommencer la fête</button>
+      </div>
+      <section class="instructions">
+        <h2>Commandes</h2>
+        <ul>
+          <li><strong>← →</strong> : se déplacer</li>
+          <li><strong>Espace</strong> ou <strong>↑</strong> : sauter</li>
+          <li>Collecte tous les tickets pour voir le feu d'artifice.</li>
+        </ul>
+        <p>
+          Les plateformes représentent les chars et stands du carnaval, chacun
+          offrant un rebond festif. Évite de tomber et garde le rythme au son de
+          la samba !
+        </p>
+      </section>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

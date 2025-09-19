@@ -13,6 +13,55 @@
         Aide Samba, le chien acrobate, à collecter les tickets du carnaval pour
         lancer le feu d'artifice final !
       </p>
+
+      <section id="main-menu" class="menu" aria-labelledby="menu-title">
+        <h2 id="menu-title">Menu principal</h2>
+        <div class="menu__buttons">
+          <button id="play-button" type="button">Jouer</button>
+          <button
+            id="character-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="character-panel"
+          >
+            Sélection de personnage
+          </button>
+          <button
+            id="level-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="level-panel"
+          >
+            Sélection de niveau
+          </button>
+        </div>
+        <div id="character-panel" class="menu__panel" hidden>
+          <h3>Choisis le pelage de Samba</h3>
+          <div id="character-options" class="skin-options" role="list"></div>
+        </div>
+        <div id="level-panel" class="menu__panel" hidden>
+          <h3>Choisis un niveau</h3>
+          <ol id="level-list" class="level-options"></ol>
+        </div>
+        <section class="leaderboard" aria-labelledby="leaderboard-title">
+          <h3 id="leaderboard-title">Classement du carnaval</h3>
+          <p id="leaderboard-empty">
+            Aucun temps enregistré pour l'instant. Terminez les trois niveaux
+            d'affilée pour figurer ici !
+          </p>
+          <ol id="leaderboard-list" hidden></ol>
+        </section>
+        <section
+          id="last-run-summary"
+          class="menu__summary"
+          aria-labelledby="summary-title"
+          hidden
+        >
+          <h3 id="summary-title">Dernière performance</h3>
+          <ul id="last-run-list"></ul>
+        </section>
+      </section>
+
       <div class="hud" role="status" aria-live="polite">
         <p class="hud__score">
           <span aria-hidden="true">🎟️</span>
@@ -20,6 +69,19 @@
           <span id="ticket-count">0</span>
           /
           <span id="ticket-total">0</span>
+        </p>
+        <div class="hud__timers">
+          <p class="hud__timer">
+            <span class="hud__timer-label">Temps niveau :</span>
+            <span id="level-timer">0:00.000</span>
+          </p>
+          <p class="hud__timer">
+            <span class="hud__timer-label">Temps total :</span>
+            <span id="total-timer">0:00.000</span>
+          </p>
+        </div>
+        <p class="hud__level">
+          Niveau : <span id="current-level-name">Carnaval</span>
         </p>
         <p id="status">Collecte tous les tickets pour déclencher la fête.</p>
       </div>

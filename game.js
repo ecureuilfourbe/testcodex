@@ -203,10 +203,12 @@
     restartButton.blur();
   });
 
+ codex/update-keydown-event-handler-in-game.js-cmmt7m
   playButton.addEventListener("click", handlePlayClick);
   characterButton.addEventListener("click", () => togglePanel(characterButton, characterPanel));
   levelButton.addEventListener("click", () => togglePanel(levelButton, levelPanel));
 
+ main
   const gameplayKeyCodes = [
     "ArrowLeft",
     "ArrowRight",
@@ -243,7 +245,8 @@
 
   window.addEventListener("keydown", (event) => {
     const code = event.code;
-    const isGameplayKey = gameplayKeyCodes.includes(code);
+codex/update-keydown-event-handler-in-game.js-cmmt7m
+    const isGameplayKey = gameplayKeyCodes.includes(code)
 
     if (isGameplayKey && gameState === GAME_STATES.PLAYING) {
       if (!isMenuControl(event.target) && !isMenuControl(document.activeElement)) {
@@ -256,6 +259,12 @@
         closePanels();
       }
       return;
+=======
+    if (gameplayKeyCodes.includes(code)) {
+      if (!isMenuControl(event.target) && !isMenuControl(document.activeElement)) {
+        event.preventDefault();
+      }
+main
     }
 
     switch (code) {

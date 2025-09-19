@@ -1,0 +1,155 @@
+:root {
+  color-scheme: light;
+  --carnival-purple: #6a00f4;
+  --carnival-pink: #ff5ea3;
+  --carnival-yellow: #ffe066;
+  --carnival-green: #2ddf7c;
+  --sky-blue: #66d0ff;
+  --night-blue: #142850;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, var(--sky-blue), #fef6ff 60%);
+  color: var(--night-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+main {
+  width: min(960px, 100%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem 3rem;
+  box-shadow: 0 1.5rem 4rem rgba(20, 40, 80, 0.2);
+  position: relative;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: var(--carnival-purple);
+  text-shadow: 0.2rem 0.2rem 0 var(--carnival-yellow);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin: 0.75rem auto 1.5rem;
+  max-width: 40ch;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: linear-gradient(135deg, var(--carnival-yellow), #fff4d6);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 0.25rem solid rgba(106, 0, 244, 0.12);
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 0 0.75rem rgba(20, 40, 80, 0.1);
+}
+
+.hud__score {
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#status {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.game-area {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+canvas {
+  width: min(100%, 960px);
+  height: auto;
+  border-radius: 1rem;
+  border: 0.5rem solid rgba(106, 0, 244, 0.25);
+  box-shadow: 0 1.25rem 3rem rgba(20, 40, 80, 0.25);
+  background: #0b1d3c;
+}
+
+#restart-button {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--carnival-pink), var(--carnival-purple));
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0.75rem 1.8rem rgba(106, 0, 244, 0.35);
+}
+
+#restart-button:focus-visible {
+  outline: 0.25rem solid var(--carnival-yellow);
+  outline-offset: 0.25rem;
+}
+
+#restart-button:hover {
+  transform: translateY(-0.2rem) scale(1.02);
+  box-shadow: 0 1.25rem 2.5rem rgba(106, 0, 244, 0.4);
+}
+
+.instructions {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(102, 208, 255, 0.2);
+  border-radius: 1rem;
+  border: 0.2rem dashed rgba(106, 0, 244, 0.2);
+  text-align: left;
+}
+
+.instructions h2 {
+  margin-top: 0;
+  color: var(--carnival-pink);
+}
+
+.instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 0.75rem 2.5rem;
+  }
+
+  main {
+    padding: 2rem 1.25rem;
+  }
+
+  .hud {
+    justify-content: center;
+  }
+}

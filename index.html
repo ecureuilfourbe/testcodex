@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Le Carnaval du Chien Voltigeur</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Le Carnaval du Chien Voltigeur</h1>
+      <p class="tagline">
+        Aide Samba, le chien acrobate, à collecter les tickets du carnaval pour
+        lancer le feu d'artifice final !
+      </p>
+      <div class="hud" role="status" aria-live="polite">
+        <p class="hud__level" id="level-name">Niveau 1 · Parade d'ouverture</p>
+        <p class="hud__score">
+          <span aria-hidden="true">🎟️</span>
+          Tickets :
+          <span id="ticket-count">0</span>
+          /
+          <span id="ticket-total">0</span>
+        </p>
+        <p id="status">Collecte tous les tickets pour déclencher la fête.</p>
+      </div>
+      <div class="game-area">
+        <canvas
+          id="game"
+          width="960"
+          height="540"
+          role="img"
+          aria-label="Un jeu de plateforme dans un carnaval avec un chien acrobate."
+        ></canvas>
+        <div class="game-controls">
+          <button id="restart-button" type="button">Recommencer la fête</button>
+          <button id="menu-button" type="button">Menu principal</button>
+        </div>
+      </div>
+      <div id="main-menu" class="menu menu--open" aria-hidden="false">
+        <div class="menu__panel" role="dialog" aria-modal="true" aria-labelledby="main-menu-title">
+          <h2 id="main-menu-title">Menu principal</h2>
+          <p class="menu__selection">
+            Personnage :
+            <span id="selected-character">Samba (sable)</span>
+          </p>
+          <p class="menu__selection">
+            Niveau :
+            <span id="selected-level">Niveau 1 · Parade d'ouverture</span>
+          </p>
+          <div class="menu__actions">
+            <button id="play-button" class="menu__primary" type="button">Jouer</button>
+            <button
+              id="character-button"
+              class="menu__secondary"
+              type="button"
+              aria-expanded="false"
+              aria-controls="character-panel"
+            >
+              Sélection de personnage
+            </button>
+            <button
+              id="level-button"
+              class="menu__secondary"
+              type="button"
+              aria-expanded="false"
+              aria-controls="level-panel"
+            >
+              Sélection de niveau
+            </button>
+          </div>
+          <div id="character-panel" class="menu__section" hidden>
+            <h3>Choisis la palette de Samba</h3>
+            <div class="menu__options">
+              <button class="menu__option menu__option--character" type="button" data-palette="samba">
+                <span aria-hidden="true" class="menu__swatch menu__swatch--samba"></span>
+                <span>Samba (sable)</span>
+              </button>
+              <button class="menu__option menu__option--character" type="button" data-palette="confetti">
+                <span aria-hidden="true" class="menu__swatch menu__swatch--confetti"></span>
+                <span>Confetti (doré)</span>
+              </button>
+              <button class="menu__option menu__option--character" type="button" data-palette="nocturne">
+                <span aria-hidden="true" class="menu__swatch menu__swatch--nocturne"></span>
+                <span>Nocturne (bleuté)</span>
+              </button>
+            </div>
+          </div>
+          <div id="level-panel" class="menu__section" hidden>
+            <h3>Choisis ton parcours</h3>
+            <div class="menu__options">
+              <button class="menu__option menu__option--level" type="button" data-level-index="0">
+                <span class="menu__option-title">Niveau 1</span>
+                <span class="menu__option-subtitle">Parade d'ouverture</span>
+              </button>
+              <button class="menu__option menu__option--level" type="button" data-level-index="1">
+                <span class="menu__option-title">Niveau 2</span>
+                <span class="menu__option-subtitle">Char flamboyant</span>
+                <span class="menu__option-lock" aria-hidden="true">🔒</span>
+              </button>
+              <button class="menu__option menu__option--level" type="button" data-level-index="2">
+                <span class="menu__option-title">Niveau 3</span>
+                <span class="menu__option-subtitle">Final nocturne</span>
+                <span class="menu__option-lock" aria-hidden="true">🔒</span>
+              </button>
+            </div>
+            <p id="level-hint" class="menu__hint">Termine le niveau 1 pour débloquer le suivant.</p>
+          </div>
+        </div>
+      </div>
+      <section class="instructions">
+        <h2>Commandes</h2>
+        <ul>
+          <li><strong>← →</strong> : se déplacer</li>
+          <li><strong>Espace</strong> ou <strong>↑</strong> : sauter</li>
+          <li>
+            <strong>Bouton “Menu principal”</strong> ou <strong>Échap</strong> : ouvrir le menu et changer les
+            options.
+          </li>
+          <li>Collecte tous les tickets pour voir le feu d'artifice et progresser.</li>
+        </ul>
+        <p>
+          Les plateformes représentent les chars et stands du carnaval, chacun
+          offrant un rebond festif. Évite de tomber et garde le rythme au son de
+          la samba !
+        </p>
+        <p>
+          Depuis le menu principal, choisis la couleur de Samba et ton parcours. Les niveaux 2 et 3 se débloquent en
+          terminant les précédents.
+        </p>
+      </section>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

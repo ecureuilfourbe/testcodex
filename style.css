@@ -1,0 +1,408 @@
+:root {
+  color-scheme: light;
+  --carnival-purple: #6a00f4;
+  --carnival-pink: #ff5ea3;
+  --carnival-yellow: #ffe066;
+  --carnival-green: #2ddf7c;
+  --sky-blue: #66d0ff;
+  --night-blue: #142850;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, var(--sky-blue), #fef6ff 60%);
+  color: var(--night-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+main {
+  width: min(960px, 100%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem 3rem;
+  box-shadow: 0 1.5rem 4rem rgba(20, 40, 80, 0.2);
+  position: relative;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: var(--carnival-purple);
+  text-shadow: 0.2rem 0.2rem 0 var(--carnival-yellow);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin: 0.75rem auto 1.5rem;
+  max-width: 40ch;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: linear-gradient(135deg, var(--carnival-yellow), #fff4d6);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 0.25rem solid rgba(106, 0, 244, 0.12);
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 0 0.75rem rgba(20, 40, 80, 0.1);
+}
+
+.hud__level {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--carnival-purple);
+}
+
+.hud__score {
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#status {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.game-area {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+canvas {
+  width: min(100%, 960px);
+  height: auto;
+  border-radius: 1rem;
+  border: 0.5rem solid rgba(106, 0, 244, 0.25);
+  box-shadow: 0 1.25rem 3rem rgba(20, 40, 80, 0.25);
+  background: #0b1d3c;
+}
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+#restart-button,
+#menu-button {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#restart-button {
+  background: linear-gradient(135deg, var(--carnival-pink), var(--carnival-purple));
+  color: white;
+  box-shadow: 0 0.75rem 1.8rem rgba(106, 0, 244, 0.35);
+}
+
+#restart-button:focus-visible {
+  outline: 0.25rem solid var(--carnival-yellow);
+  outline-offset: 0.25rem;
+}
+
+#restart-button:hover {
+  transform: translateY(-0.2rem) scale(1.02);
+  box-shadow: 0 1.25rem 2.5rem rgba(106, 0, 244, 0.4);
+}
+
+#menu-button {
+  background: linear-gradient(135deg, var(--carnival-yellow), #ffad3d);
+  color: var(--night-blue);
+  box-shadow: 0 0.75rem 1.6rem rgba(255, 94, 163, 0.25);
+}
+
+#menu-button:focus-visible {
+  outline: 0.25rem solid rgba(106, 0, 244, 0.4);
+  outline-offset: 0.25rem;
+}
+
+#menu-button:hover {
+  transform: translateY(-0.2rem) scale(1.02);
+  box-shadow: 0 1.25rem 2.5rem rgba(255, 94, 163, 0.35);
+}
+
+#menu-button:active,
+#restart-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.menu {
+  position: absolute;
+  inset: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background: rgba(9, 16, 43, 0.5);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.menu.menu--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu__panel {
+  width: min(520px, 100%);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 236, 250, 0.95));
+  border-radius: 1.25rem;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 2rem 4rem rgba(12, 19, 43, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--night-blue);
+}
+
+.menu__panel h2 {
+  margin: 0;
+  text-align: center;
+  color: var(--carnival-purple);
+}
+
+.menu__selection {
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.menu__primary,
+.menu__secondary {
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu__primary {
+  background: linear-gradient(135deg, var(--carnival-purple), #8938ff);
+  color: white;
+  box-shadow: 0 1.25rem 2.5rem rgba(106, 0, 244, 0.35);
+}
+
+.menu__secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--carnival-purple);
+  box-shadow: inset 0 0 0 0.15rem rgba(106, 0, 244, 0.25);
+}
+
+.menu__primary:hover,
+.menu__secondary:hover {
+  transform: translateY(-0.15rem);
+}
+
+.menu__primary:focus-visible,
+.menu__secondary:focus-visible {
+  outline: 0.25rem solid var(--carnival-yellow);
+  outline-offset: 0.25rem;
+}
+
+.menu__section {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: inset 0 0 0 0.15rem rgba(106, 0, 244, 0.15);
+}
+
+.menu__section[hidden] {
+  display: none;
+}
+
+.menu__section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--carnival-pink);
+  text-align: center;
+}
+
+.menu__options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.menu__option {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  justify-content: flex-start;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.85rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0.8rem 1.5rem rgba(20, 40, 80, 0.1);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  font-weight: 600;
+  color: var(--night-blue);
+}
+
+.menu__option:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 1.1rem 2rem rgba(20, 40, 80, 0.15);
+}
+
+.menu__option:focus-visible {
+  outline: 0.25rem solid var(--carnival-yellow);
+  outline-offset: 0.15rem;
+}
+
+.menu__option--active {
+  border: 0.2rem solid var(--carnival-purple);
+  box-shadow: 0 1rem 2.5rem rgba(106, 0, 244, 0.25);
+}
+
+.menu__option--character {
+  font-size: 1rem;
+}
+
+.menu__swatch {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.2rem rgba(255, 255, 255, 0.8), 0 0.4rem 0.8rem rgba(20, 40, 80, 0.2);
+}
+
+.menu__swatch--samba {
+  background: linear-gradient(135deg, #c67c48, #d89a64);
+}
+
+.menu__swatch--confetti {
+  background: linear-gradient(135deg, #f2a93b, #ffe066);
+}
+
+.menu__swatch--nocturne {
+  background: linear-gradient(135deg, #4f6be3, #8ab0ff);
+}
+
+.menu__option--level {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.menu__option-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.menu__option-subtitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(20, 40, 80, 0.75);
+}
+
+.menu__option-lock {
+  margin-top: 0.35rem;
+  font-size: 1.1rem;
+  display: none;
+}
+
+.menu__option[disabled],
+.menu__option[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  border: 0.15rem dashed rgba(106, 0, 244, 0.2);
+  box-shadow: none;
+}
+
+.menu__option--locked .menu__option-lock {
+  display: inline;
+}
+
+.menu__hint {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgba(20, 40, 80, 0.8);
+}
+
+.instructions {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(102, 208, 255, 0.2);
+  border-radius: 1rem;
+  border: 0.2rem dashed rgba(106, 0, 244, 0.2);
+  text-align: left;
+}
+
+.instructions h2 {
+  margin-top: 0;
+  color: var(--carnival-pink);
+}
+
+.instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 0.75rem 2.5rem;
+  }
+
+  main {
+    padding: 2rem 1.25rem;
+  }
+
+  .hud {
+    justify-content: center;
+  }
+
+  .menu {
+    inset: 1rem;
+    padding: 1.5rem;
+  }
+
+  .menu__panel {
+    padding: 1.75rem 1.25rem;
+  }
+}
